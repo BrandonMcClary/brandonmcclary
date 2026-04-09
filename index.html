@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brandon McClary | Sports Media</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --blue: #1d4ed8;
+      --blue-dark: #153eaf;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --shadow-hover: 0 18px 40px rgba(15, 23, 42, 0.12);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --container: 1280px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    .nav {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: #334155;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--blue);
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 999px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #0f172a;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+    }
+
+    .social-box:hover {
+      transform: translateY(-2px);
+      background: var(--blue);
+      box-shadow: 0 14px 28px rgba(29, 78, 216, 0.22);
+    }
+
+    .page-shell {
+      padding: 34px 0 70px;
+    }
+
+    .intro-strip {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .intro-text h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .intro-text p {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1rem;
+    }
+
+    .intro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff6ff;
+      color: var(--blue-dark);
+      border: 1px solid #bfdbfe;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 10px 14px;
+      white-space: nowrap;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(320px, 0.95fr);
+      gap: 28px;
+      margin-bottom: 52px;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 600px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      background:
+        linear-gradient(to top, rgba(2, 6, 23, 0.88) 0%, rgba(2, 6, 23, 0.15) 55%, rgba(2, 6, 23, 0.05) 100%),
+        url("https://gsp-image-cdn.wmsports.io/cms/prod/bleacher-report/getty_images/2244071116_large_cropped_0.jpg") center center / cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 34px;
+      color: #ffffff;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 8px 12px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-content h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      max-width: 760px;
+      margin-bottom: 14px;
+    }
+
+    .hero-content p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.86);
+      margin-bottom: 20px;
+    }
+
+    .hero-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 0.94rem;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .hero-button:hover {
+      transform: translateY(-1px);
+      background: #eff6ff;
+    }
+
+    .side-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .side-panel-header {
+      padding: 8px 8px 14px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4px;
+    }
+
+    .side-panel-header h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .side-panel-header p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 4px;
+    }
+
+    .story-item {
+      display: block;
+      padding: 18px 12px;
+      border-radius: 14px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .story-item:last-child {
+      border-bottom: none;
+    }
+
+    .story-item:hover {
+      background: var(--surface-2);
+      transform: translateX(3px);
+    }
+
+    .story-meta {
+      display: inline-block;
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .story-item h4 {
+      font-size: 1.45rem;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .story-item p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .section-title h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+      letter-spacing: -0.04em;
+      color: #163b8f;
+    }
+
+    .section-note {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .find-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .find-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .find-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    .find-card-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .find-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .find-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .platform-pill {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(15, 23, 42, 0.78);
+      color: #ffffff;
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 8px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      backdrop-filter: blur(6px);
+    }
+
+    .find-card-content {
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-grow: 1;
+    }
+
+    .find-card-content h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .find-card-content p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .find-link {
+      margin-top: auto;
+      color: var(--blue);
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .footer {
+      margin-top: 60px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer strong {
+      color: var(--text);
+    }
+
+    @media (max-width: 1120px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: 520px;
+      }
+
+      .find-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .nav-links a.active::after,
+      .nav-links a:hover::after {
+        display: none;
+      }
+
+      .nav-actions {
+        width: 100%;
+      }
+
+      .intro-strip {
+        padding: 20px;
+      }
+
+      .hero-card {
+        min-height: 450px;
+      }
+
+      .hero-content {
+        padding: 24px;
+      }
+
+      .story-item h4 {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(var(--container), calc(100% - 24px));
+      }
+
+      .page-shell {
+        padding-top: 20px;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .hero-content h2 {
+        font-size: 2rem;
+      }
+
+      .hero-content {
+        padding: 20px;
+      }
+
+      .find-card img {
+        height: 215px;
+      }
+
+      .section-title h3 {
+        font-size: 1.45rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="logo"><span>Brandon</span> McClary</a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html" class="active">Home</a>
+        <a href="panthers.html">Panthers</a>
+        <a href="hornets.html">Hornets</a>
+        <a href="about-me.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="container">
+
+      <section class="intro-strip">
+        <div class="intro-text">
+          <h1>Charlotte Sports Coverage By A Fan, For The Fans.</h1>
+          <p>
+            Carolina Panthers, Charlotte Hornets, and original sports content all in one place.
+          </p>
+        </div>
+        <div class="intro-badge">Featured stories + social links</div>
+      </section>
+
+      <section class="hero-layout">
+        <a href="bestseasonlamelo.html" class="hero-card" aria-label="Why LaMelo Ball’s Best Season Doesn’t Show Up in the Stats">
+          <div class="hero-content">
+            <div class="hero-tag">Featured Story</div>
+            <h2>Why LaMelo Ball’s Best Season Doesn’t Show Up in the Stats</h2>
+            <p>By Brandon McClary</p>
+            <span class="hero-button">Read article →</span>
+          </div>
+        </a>
+
+        <aside class="side-panel">
+          <div class="side-panel-header">
+            <h3>More From Brandon</h3>
+            <p>Recent stories and featured reads</p>
+          </div>
+
+          <a href="brooks.html" class="story-item">
+            <span class="story-meta">Panthers</span>
+            <h4>The Inevitable Return of Jonathan Brooks</h4>
+            <p>By Brandon McClary</p>
+          </a>
+
+          <a href="cobywhite6th.html" class="story-item">
+            <span class="story-meta">Hornets</span>
+            <h4>How Coby White Changed Charlotte's Second Unit</h4>
+            <p>By Brandon McClary</p>
+          </a>
+
+          <a href="kenyon-sadiq.html" class="story-item">
+            <span class="story-meta">Panthers</span>
+            <h4>The Peoples Dream: Kenyon Sadiq</h4>
+            <p>By Brandon McClary</p>
+          </a>
+
+          <a href="KonROTY.html" class="story-item">
+            <span class="story-meta">Hornets</span>
+            <h4>Kon Knueppel is the Rookie of the Year</h4>
+            <p>By Brandon McClary</p>
+          </a>
+
+          <a href="article3.html" class="story-item">
+            <span class="story-meta">Panthers</span>
+            <h4>Meet the Panther: Jaelan Phillips</h4>
+            <p>By Brandon McClary</p>
+          </a>
+        </aside>
+      </section>
+
+      <section>
+        <div class="section-header">
+          <div class="section-title">
+            <div class="section-dot"></div>
+            <h3>Where You Can Find Me</h3>
+          </div>
+          <p class="section-note">Connect with my team coverage and future platforms</p>
+        </div>
+
+        <div class="find-grid">
+          <a href="https://instagram.com/panthersbran" class="find-card" target="_blank" rel="noopener noreferrer">
+            <div class="find-card-image">
+              <img src="https://static.www.nfl.com/image/upload/t_editorial_landscape_12_desktop/league/rn0hecmtg5xhepej8id0" alt="PanthersBran Instagram page preview">
+              <span class="platform-pill">Instagram</span>
+            </div>
+            <div class="find-card-content">
+              <h4>@PANTHERSBRAN</h4>
+              <p>Daily Carolina Panthers Content</p>
+              <span class="find-link">Visit page →</span>
+            </div>
+          </a>
+
+          <a href="https://instagram.com/hornetsbran" class="find-card" target="_blank" rel="noopener noreferrer">
+            <div class="find-card-image">
+              <img src="https://a.espncdn.com/photo/2024/0703/r1354074_1296x518_5-2.jpg" alt="HornetsBran Instagram page preview">
+              <span class="platform-pill">Instagram</span>
+            </div>
+            <div class="find-card-content">
+              <h4>@HORNETSBRAN</h4>
+              <p>Daily Charlotte Hornets Content</p>
+              <span class="find-link">Visit page →</span>
+            </div>
+          </a>
+
+          <a href="https://x.com/BranCLT" class="find-card">
+            <div class="find-card-image">
+              <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&w=900&q=80" alt="Placeholder for third platform or brand">
+              <span class="platform-pill">X</span>
+            </div>
+            <div class="find-card-content">
+              <h4>@BRANCLT</h4>
+              <p>Twitter Account occasionally posting about Hornets and Panthers</p>
+              <span class="find-link">Visit Page →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p><strong>Brandon McClary</strong> — Sports writing, fan-focused coverage, and original content.</p>
+        <p>Built for Panthers and Hornets coverage.</p>
+      </footer>
+
+    </div>
+  </main>
+
+</body>
+</html>

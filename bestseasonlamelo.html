@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why LaMelo Ball’s Best Season Doesn’t Show Up in the Stats | Brandon McClary</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --blue: #1d4ed8;
+      --blue-dark: #153eaf;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --shadow-hover: 0 18px 40px rgba(15, 23, 42, 0.12);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --container: 1280px;
+      --article-width: 860px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    .nav {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: #334155;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--blue);
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 999px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #0f172a;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+    }
+
+    .social-box:hover {
+      transform: translateY(-2px);
+      background: var(--blue);
+      box-shadow: 0 14px 28px rgba(29, 78, 216, 0.22);
+    }
+
+    .page-shell {
+      padding: 36px 0 72px;
+    }
+
+    .article-wrap {
+      max-width: var(--article-width);
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .back-link:hover {
+      color: var(--blue-dark);
+    }
+
+    .article-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .article-hero {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-inner {
+      padding: 34px;
+    }
+
+    .article-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff6ff;
+      color: var(--blue-dark);
+      border: 1px solid #bfdbfe;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .article-subtitle {
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 720px;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.92rem;
+      color: var(--muted);
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      color: #1e293b;
+      margin-bottom: 22px;
+    }
+
+    .article-body h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin: 36px 0 14px;
+      color: var(--text);
+    }
+
+    .stat-block {
+      margin: 28px 0;
+      padding: 18px 20px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-md);
+    }
+
+    .stat-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--blue-dark);
+    }
+
+    .stat-line {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .in-article-image-block {
+      margin: 34px 0;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .in-article-image {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+    }
+
+    .image-caption {
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0 30px;
+    }
+
+    .suggested-section h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.45rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .suggested-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .suggested-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    .suggested-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 170px;
+      object-fit: cover;
+    }
+
+    .suggested-content {
+      padding: 20px 20px 20px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .suggested-label {
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 10px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: var(--blue-dark);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .suggested-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .suggested-text {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 12px;
+    }
+
+    .read-more {
+      color: var(--blue);
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .nav-links a.active::after,
+      .nav-links a:hover::after {
+        display: none;
+      }
+
+      .article-inner {
+        padding: 24px;
+      }
+
+      .article-hero {
+        height: 300px;
+      }
+
+      .in-article-image {
+        height: 260px;
+      }
+
+      .suggested-card {
+        grid-template-columns: 1fr;
+      }
+
+      .suggested-content {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(var(--container), calc(100% - 24px));
+      }
+
+      .page-shell {
+        padding-top: 22px;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .article-title {
+        font-size: 2rem;
+      }
+
+      .article-body p {
+        font-size: 1rem;
+      }
+
+      .stat-line {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="logo"><span>Brandon</span> McClary</a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="panthers.html">Panthers</a>
+        <a href="hornets.html" class="active">Hornets</a>
+        <a href="about-me.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="container">
+      <div class="article-wrap">
+
+        <a href="hornets.html" class="back-link">← Back to Hornets</a>
+
+        <article class="article-card">
+
+          <img
+            src="https://gsp-image-cdn.wmsports.io/cms/prod/bleacher-report/getty_images/2244071116_large_cropped_0.jpg"
+            alt="LaMelo Ball in a Charlotte Hornets uniform"
+            class="article-hero"
+          >
+
+          <div class="article-inner">
+
+            <div class="article-tag">Charlotte Hornets</div>
+
+            <h1 class="article-title">Why LaMelo Ball’s Best Season Doesn’t Show Up in the Stats</h1>
+
+            <p class="article-subtitle">
+              Charlotte’s offense tells a different story, one built on control, efficiency, and a fully evolved franchise guard.
+            </p>
+
+            <div class="article-meta">
+              <span>By Brandon McClary</span>
+              <span>April 8, 2026</span>
+              <span>Hornets</span>
+            </div>
+
+            <div class="article-body">
+
+              <p>LaMelo LaFrance Ball is one of, if not the most polarizing players in all of basketball.</p>
+
+              <p>When you hear the name LaMelo Ball, what comes to mind? Maybe it’s the flashy one-legged threes, the lighthearted and sometimes unserious postgame interviews, or even his days at Chino Hills, where he went undefeated alongside his brothers Lonzo and LiAngelo. That perception has followed him into the NBA.</p>
+
+              <p>However, the version of LaMelo Ball that is driving the Charlotte Hornets this season looks very different.</p>
+
+              <p>Ball is currently having the most impactful season of his career, leading the Hornets to their best record in roughly five years and positioning them for automatic playoff qualification. Despite that, the perception around his season has not matched his actual impact, largely because the traditional counting stats do not immediately stand out.</p>
+
+              <p>He is averaging 20.0 points per game and 7.1 assists per game, both of which are lower than previous peaks in his career. On the surface, that suggests stagnation or even regression. In reality, it reflects a shift in role, decision-making, and overall offensive structure.</p>
+
+              <p>Since being drafted in 2020, Ball has operated as the primary initiator in Charlotte’s offense. Early in his career, that responsibility translated into high-variance play. His usage was high, his shot selection was inconsistent, and the offense often relied on difficult, low-efficiency attempts. At the time, with limited secondary creation outside of Terry Rozier, that approach was somewhat necessary, but it also limited the team’s overall efficiency.</p>
+
+              <p>This season, the change is evident in how Ball is managing possessions.</p>
+
+              <p>His shot profile has become more selective, with fewer forced attempts early in the shot clock and a greater emphasis on creating efficient looks for both himself and his teammates. Rather than prioritizing volume, he is prioritizing control of the offense. The result is a more stable half-court structure and fewer empty possessions.</p>
+
+              <p>This level of growth has not gone unnoticed. Hall of Famer Steve Nash has praised Ball’s development, specifically highlighting Ball’s increased maturity, improved decision-making, and ability to “trim the fat” from his game. Nash noted Ball’s elite passing and efficiency in controlling the offense, calling the Hornets’ performance under him “playoff basketball.”</p>
+
+              <p>A major factor in this shift is the roster context around him, specifically the emergence of Brandon Miller and the efficiency provided by Kon Knueppel.</p>
+
+              <p>Miller has developed into a legitimate primary scoring option, capable of taking on a significant portion of the offensive load. His ability to create his own shot, especially in half-court settings and late in possessions, has reduced the pressure on Ball to generate offense on every trip. Instead of forcing difficult looks, Ball can now operate more selectively, allowing the offense to flow through multiple options.</p>
+
+              <p>At the same time, Knueppel’s impact comes through efficiency and off-ball value. His shooting consistency, spacing, and decision-making help maintain structure within possessions without requiring high usage. This allows the offense to function smoothly while keeping Ball in control as the primary facilitator.</p>
+
+              <p>The impact of these changes is best reflected in the team’s offensive performance when Ball is on the floor. The Hornets are scoring 123.9 points per 100 possessions with him on the court this season, a mark that would surpass the 2023–24 Boston Celtics’ record-setting 123.2 offensive rating. That level of efficiency is not a result of increased volume from Ball, but rather the opposite. It comes from improved decision-making, better spacing, and a more balanced offensive system. Ball is still the central decision-maker, but the offense is no longer completely dependent on the abilities of one player.</p>
+
+              <div class="in-article-image-block">
+                <img
+                  src="https://cdn.basketballnews.com/images/story/12603/lamelo-ball%2C-brandon-miller%2C-charlotte-hornets-feature.jpg"
+                  alt="LaMelo Ball during a Charlotte Hornets game"
+                  class="in-article-image"
+                >
+                <div class="image-caption">
+                  LaMelo Ball has shifted from high-volume creator to offensive engine within a more balanced Charlotte system.
+                </div>
+              </div>
+
+              <p>To compliment the reduced scoring role, his playmaking has become more deliberate. Instead of looking to first put up a shot, he is now prioritizing the involvement of his teammates. His reads in the half court are far more controlled, and he is generating higher-quality opportunities for the entirety of the team.</p>
+
+              <p>This version of Ball is trading statistical output for wins.</p>
+
+              <p>That tradeoff is the primary reason his season is being undervalued. Evaluations based strictly on points and assists fail to capture the growth in Ball’s game, a growth that has gone hand in hand with Charlotte’s success this season.</p>
+
+              <p>Ball is no longer just a high-upside, high-variance guard. He is functioning as a true primary engine for a competitive team, capable of balancing scoring and playmaking within a structured system.</p>
+
+              <p>And for a franchise that has struggled to establish long-term direction, that shift is significantly more valuable than any increase in raw numbers.</p>
+
+            </div>
+
+            <hr class="article-divider">
+
+            <section class="suggested-section">
+              <h3>Suggested Article</h3>
+
+              <a href="KonROTY.html" class="suggested-card">
+                <img
+                  src="https://cdn.abcotvs.com/dip/images/18515008_knueppel-flagg-ap-img.jpg"
+                  alt="Kon Knueppel ROTY Article preview"
+                >
+                <div class="suggested-content">
+                  <div class="suggested-label">More Hornets Coverage</div>
+                  <div class="suggested-title">Why Kon Knueppel Should Be Rookie of the Year.</div>
+                  <div class="suggested-text">
+The Rookie of the Year race is supposed to be about who had the best season, not just who came in with the loudest hype. That is where Kon Knueppel has a serious case.                  </div>
+                  <div class="read-more">Read Article →</div>
+                </div>
+              </a>
+            </section>
+
+          </div>
+        </article>
+
+        <div class="footer">
+          © 2026 Brandon McClary
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

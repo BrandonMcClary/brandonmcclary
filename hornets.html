@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hornets Articles | Brandon McClary</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --blue: #1d4ed8;
+      --blue-dark: #153eaf;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --shadow-hover: 0 18px 40px rgba(15, 23, 42, 0.12);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --container: 1280px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    .nav {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: #334155;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--blue);
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 999px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #0f172a;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+    }
+
+    .social-box:hover {
+      transform: translateY(-2px);
+      background: var(--blue);
+      box-shadow: 0 14px 28px rgba(29, 78, 216, 0.22);
+    }
+
+    .page-shell {
+      padding: 34px 0 70px;
+    }
+
+    .page-intro {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 26px;
+    }
+
+    .page-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff6ff;
+      color: var(--blue-dark);
+      border: 1px solid #bfdbfe;
+      font-size: 0.8rem;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+    }
+
+    .page-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      margin-bottom: 10px;
+    }
+
+    .page-subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 900px;
+    }
+
+    .search-wrap {
+      margin: 0 0 28px;
+    }
+
+    .search-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+
+    .search-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 10px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      background: white;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .section-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .section-head h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: -0.04em;
+      color: #163b8f;
+    }
+
+    .section-note {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .article-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      height: 100%;
+    }
+
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    .article-image-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-image {
+      width: 100%;
+      height: 205px;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .article-card:hover .article-image {
+      transform: scale(1.04);
+    }
+
+    .article-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(15, 23, 42, 0.8);
+      color: #ffffff;
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 8px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      backdrop-filter: blur(6px);
+    }
+
+    .article-content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      padding: 18px 18px 20px;
+    }
+
+    .article-content h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.28rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .article-meta {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .article-description {
+      font-size: 0.97rem;
+      color: #475569;
+      margin-bottom: 16px;
+    }
+
+    .read-more {
+      margin-top: auto;
+      color: var(--blue);
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .no-results {
+      display: none;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .footer {
+      margin-top: 36px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 1100px) {
+      .articles-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .nav-links a.active::after,
+      .nav-links a:hover::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .articles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .article-image {
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(var(--container), calc(100% - 24px));
+      }
+
+      .page-shell {
+        padding-top: 22px;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .page-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="logo"><span>Brandon</span> McClary</a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="panthers.html">Panthers</a>
+        <a href="hornets.html" class="active">Hornets</a>
+        <a href="about-me.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+     
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="container">
+
+      <section class="page-intro">
+        <div class="page-kicker">Hornets Coverage</div>
+        <h1 class="page-title">Charlotte Hornets Articles</h1>
+        <p class="page-subtitle">
+          All of my Hornets coverage in one place. Search by player, position, or article title to find the story you want faster.
+        </p>
+      </section>
+
+      <section class="search-wrap">
+        <div class="search-card">
+          <label for="searchInput" class="search-label">Search articles</label>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search Hornets articles..."
+          />
+        </div>
+      </section>
+
+      <section class="section-head">
+        <div class="section-left">
+          <div class="section-dot"></div>
+          <h2>Latest Hornets Stories</h2>
+        </div>
+        <p class="section-note">Click any story to open the full article</p>
+      </section>
+
+      <section class="articles-grid" id="articlesGrid">
+
+          <a
+          href="bestseasonlamelo.html"
+          class="article-card"
+          data-title="Why LaMelo Ball’s Best Season Doesn’t Show Up in the Stats"
+          data-keywords="coby white hornets bench second unit trade scoring charlotte collin sexton"
+        >
+          <div class="article-image-wrap">
+            <img
+              src="https://gsp-image-cdn.wmsports.io/cms/prod/bleacher-report/getty_images/2244071116_large_cropped_0.jpg"
+              alt="Coby White article image"
+              class="article-image"
+            >
+            <div class="article-tag">Hornets</div>
+          </div>
+          <div class="article-content">
+            <h3>Why LaMelo Ball’s Best Season Doesn’t Show Up in the Stats </h3>
+            <div class="article-meta">April 8, 2026</div>
+            <p class="article-description">
+             Charlotte’s offense tells a different story, one built on control, efficiency, and a fully evolved franchise guard.
+            </p>
+            <div class="read-more">Read Article →</div>
+          </div>
+        </a>
+
+          <a
+          href="cobywhite6th.html"
+          class="article-card"
+          data-title="How Coby White Changed Charlotte’s Second Unit"
+          data-keywords="coby white hornets bench second unit trade scoring charlotte collin sexton"
+        >
+          <div class="article-image-wrap">
+            <img
+              src="https://s.yimg.com/ny/api/res/1.2/tT2VBWL5PnaaNuTLLF.8xQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://s.yimg.com/os/creatr-uploaded-images/2026-02/5803d160-14d9-11f1-9b5f-5d801f80c26c"
+              alt="Coby White article image"
+              class="article-image"
+            >
+            <div class="article-tag">Hornets</div>
+          </div>
+          <div class="article-content">
+            <h3>How Coby White Changed Charlotte’s Second Unit</h3>
+            <div class="article-meta">April 2, 2026</div>
+            <p class="article-description">
+              Coby White has brought control, scoring, and much-needed stability to Charlotte’s bench group.
+            </p>
+            <div class="read-more">Read Article →</div>
+          </div>
+        </a>
+
+
+        <a
+          href="KonROTY.html"
+          class="article-card"
+          data-title="Why Kon Knueppel Should Be Rookie of the Year"
+          data-keywords="kon knueppel rookie of the year roty hornets nba cooper flagg rookie race"
+        >
+          <div class="article-image-wrap">
+            <img
+              src="https://cdn.abcotvs.com/dip/images/18515008_knueppel-flagg-ap-img.jpg"
+              alt="Kon Knueppel article image"
+              class="article-image"
+            >
+            <div class="article-tag">HORNETS</div>
+          </div>
+          <div class="article-content">
+            <h3>Why Kon Knueppel Should Be Rookie of the Year</h3>
+            <div class="article-meta">April 2, 2026</div>
+            <p class="article-description">
+              A look at why Knueppel’s consistency and efficiency give him a real Rookie of the Year case.
+            </p>
+            <div class="read-more">Read Article →</div>
+          </div>
+        </a>
+
+     <a
+          href="upset.html"
+          class="article-card"
+          data-title="Buzz City is Killing for an Upset"
+          data-keywords="hornets pistons playoff play in cade cunningham upset buzz city detroit seed revenge"
+        >
+          <div class="article-image-wrap">
+            <img
+              src="https://s.yimg.com/ny/api/res/1.2/5.7i7OTtnUymBLP3Cq2lDA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU7Y2Y9d2VicA--/https://media.zenfs.com/en/clutchpoints_articles_939/76b9a6a5465987a839aaf5c69f5c2557"
+              alt="Hornets playoff article"
+              class="article-image"
+            >
+            <div class="article-tag">Hornets</div>
+          </div>
+          <div class="article-content">
+            <h3>Buzz City is Killing for an Upset</h3>
+            <div class="article-meta">March 31, 2026</div>
+            <p class="article-description">
+              Why Charlotte might be a much more dangerous playoff team than their seed suggests.
+            </p>
+            <div class="read-more">Read Article →</div>
+          </div>
+        </a>
+
+      </section>
+
+      <div class="no-results" id="noResults">
+        No articles matched your search.
+      </div>
+
+      <div class="footer">
+        © 2026 Brandon McClary
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const articleCards = document.querySelectorAll('.article-card');
+    const noResults = document.getElementById('noResults');
+
+    searchInput.addEventListener('input', function () {
+      const searchTerm = this.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      articleCards.forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        const keywords = card.dataset.keywords.toLowerCase();
+        const combinedText = title + " " + keywords;
+
+        if (combinedText.includes(searchTerm)) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Peoples Dream: Kenyon Sadiq | Brandon McClary</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --blue: #1d4ed8;
+      --blue-dark: #153eaf;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --shadow-hover: 0 18px 40px rgba(15, 23, 42, 0.12);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --container: 1280px;
+      --article-width: 860px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    .nav {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: #334155;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--blue);
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 999px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #0f172a;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+    }
+
+    .social-box:hover {
+      transform: translateY(-2px);
+      background: var(--blue);
+      box-shadow: 0 14px 28px rgba(29, 78, 216, 0.22);
+    }
+
+    .page-shell {
+      padding: 36px 0 72px;
+    }
+
+    .article-wrap {
+      max-width: var(--article-width);
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .back-link:hover {
+      color: var(--blue-dark);
+    }
+
+    .article-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .article-hero {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-inner {
+      padding: 34px;
+    }
+
+    .article-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff6ff;
+      color: var(--blue-dark);
+      border: 1px solid #bfdbfe;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .article-subtitle {
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 720px;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.92rem;
+      color: var(--muted);
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      color: #1e293b;
+      margin-bottom: 22px;
+    }
+
+    .article-body .short-line {
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .article-body h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin: 36px 0 14px;
+      color: var(--text);
+    }
+
+    .in-article-image-block {
+      margin: 34px 0;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .in-article-image {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+    }
+
+    .image-caption {
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0 30px;
+    }
+
+    .suggested-section h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.45rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .suggested-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .suggested-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    .suggested-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 170px;
+      object-fit: cover;
+    }
+
+    .suggested-content {
+      padding: 20px 20px 20px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .suggested-label {
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 10px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: var(--blue-dark);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .suggested-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .suggested-text {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 12px;
+    }
+
+    .read-more {
+      color: var(--blue);
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .nav-links a.active::after,
+      .nav-links a:hover::after {
+        display: none;
+      }
+
+      .article-inner {
+        padding: 24px;
+      }
+
+      .article-hero {
+        height: 300px;
+      }
+
+      .in-article-image {
+        height: 260px;
+      }
+
+      .suggested-card {
+        grid-template-columns: 1fr;
+      }
+
+      .suggested-content {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(var(--container), calc(100% - 24px));
+      }
+
+      .page-shell {
+        padding-top: 22px;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .article-title {
+        font-size: 2rem;
+      }
+
+      .article-body p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="logo"><span>Brandon</span> McClary</a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="panthers.html" class="active">Panthers</a>
+        <a href="hornets.html">Hornets</a>
+        <a href="about-me.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+     
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="container">
+      <div class="article-wrap">
+
+        <a href="panthers.html" class="back-link">← Back to Panthers</a>
+
+        <article class="article-card">
+
+          <img
+            src="https://www.oregonlive.com/resizer/v2/ZQGPS5ZUCZEB7P45WQYWHGBG2M.jpg?auth=0239dabb48795adc1709073da312496b509cf57eee58c92cb82697a014c43496&width=1280&smart=true&quality=90"
+            alt="Kenyon Sadiq at Oregon"
+            class="article-hero"
+          >
+
+          <div class="article-inner">
+
+            <div class="article-tag">Carolina Panthers</div>
+
+            <h1 class="article-title">The Peoples Dream: Kenyon Sadiq</h1>
+
+            <p class="article-subtitle">
+              With the Panthers getting closer to pick No. 19, few names have generated more real debate than Oregon tight end Kenyon Sadiq.
+            </p>
+
+            <div class="article-meta">
+              <span>By Brandon McClary</span>
+              <span>April 1, 2026</span>
+              <span>Panthers</span>
+            </div>
+
+            <div class="article-body">
+
+              <p>This article is being written on April 1st, 2026, which means we’ve officially entered draft month. In just 22 days, barring any unforeseen circumstances, the Carolina Panthers will be on the clock with the 19th overall pick, and like every year, there has been no shortage of opinions from fans on what direction the team should take. Some believe the offense still needs another wide receiver to support the passing game, while others are pushing for defensive help, specifically at linebacker. But more than anything, one name has continued to rise above the rest in conversations surrounding this pick.</p>
+
+              <p>That name is Kenyon Sadiq. The Oregon tight end has quickly emerged as one of the more intriguing prospects in this class, especially for a team like Carolina that is still trying to build a more dynamic and consistent offense. At 6-foot-3, Sadiq fits the mold of the modern tight end, someone who can line up in multiple spots, stretch the field, and create mismatches against both linebackers and defensive backs. He is not just a traditional in-line blocker, but rather a true receiving threat who can impact the game in a variety of ways.</p>
+
+              <h2>Why the interest makes sense</h2>
+
+              <p>Sadiq first started gaining attention during his sophomore season in 2024, where flashes of his playmaking ability began to show up more consistently. However, it was this past season where he really took the next step and established himself as a legitimate NFL prospect. During his junior campaign, he totaled 560 receiving yards and 8 touchdowns, becoming a reliable target and frequently showing the ability to make plays down the field. Sadiq proved he could handle a larger role in a competitive offense.</p>
+
+              <p>With that kind of production and skillset, it’s easy to see why Panthers fans have become so interested in the idea of bringing him to Carolina. The offense is still in the process of finding consistent weapons, and adding a versatile tight end could open up new possibilities both in the passing game and in overall scheme flexibility.</p>
+
+              <div class="in-article-image-block">
+                <img
+                  src="https://www.detroitnews.com/gcdn/authoring/authoring-images/2026/02/27/PDTN/88902594007-getty-images-2256319211.jpg?width=660&height=471&fit=crop&format=pjpg&auto=webp"
+                  alt="NBA rookie action image"
+                  class="in-article-image"
+                >
+                <div class="image-caption">
+                  Oregon Tight End Kenyon Sadiq
+                </div>
+              </div>
+              <p>This interest should come as no surprise.</p>
+
+              <p>The Panthers have been lacking real production at the tight end position for years now. They’ve had guys come in and fill the role, but never someone defenses actually have to account for on every snap. It hasn’t been a true strength of the offense, and at times it’s made things feel predictable, especially in the middle of the field. Bringing in someone like Sadiq wouldn’t just add depth, it would give them something they haven’t really had in a while.</p>
+
+              <p>At the same time, using a first-round pick on a tight end is never a simple decision.</p>
+
+              <p>That’s what makes this decision so interesting. If the Panthers view Sadiq as a true offensive weapon, someone who can become a key piece of the system and grow into a reliable playmaker, then the argument for taking him becomes much stronger. And with the draft quickly approaching, that’s the kind of decision that could end up defining how this offseason is remembered.</p>
+
+            </div>
+
+            <hr class="article-divider">
+
+            <section class="suggested-section">
+              <h3>Suggested Article</h3>
+
+              <a href="brooks.html" class="suggested-card">
+                <img
+                  src="https://static.clubs.nfl.com/image/upload/t_editorial_landscape_12_desktop/panthers/m0rwfjh0fxeshyjbp91w"
+                  alt="Jonathan Brooks article preview"
+                >
+                <div class="suggested-content">
+                  <div class="suggested-label">More Panthers Coverage</div>
+                  <div class="suggested-title">The Inevitable Return of Jonathan Brooks</div>
+                  <div class="suggested-text">
+                    A closer look at Jonathan Brooks, his recovery path, and why Carolina still believes in his upside.
+                  </div>
+                  <div class="read-more">Read Article →</div>
+                </div>
+              </a>
+            </section>
+
+          </div>
+        </article>
+
+        <div class="footer">
+          © 2026 Brandon McClary
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Kon Knueppel Should Be Rookie of the Year | Brandon McClary</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --blue: #1d4ed8;
+      --blue-dark: #153eaf;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --shadow-hover: 0 18px 40px rgba(15, 23, 42, 0.12);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --container: 1280px;
+      --article-width: 860px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    .nav {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: #334155;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--blue);
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 999px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #0f172a;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+    }
+
+    .social-box:hover {
+      transform: translateY(-2px);
+      background: var(--blue);
+      box-shadow: 0 14px 28px rgba(29, 78, 216, 0.22);
+    }
+
+    .page-shell {
+      padding: 36px 0 72px;
+    }
+
+    .article-wrap {
+      max-width: var(--article-width);
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .back-link:hover {
+      color: var(--blue-dark);
+    }
+
+    .article-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .article-hero {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-inner {
+      padding: 34px;
+    }
+
+    .article-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff6ff;
+      color: var(--blue-dark);
+      border: 1px solid #bfdbfe;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4.5vw, 3.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .article-subtitle {
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 720px;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.92rem;
+      color: var(--muted);
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .article-body p {
+      font-size: 1.05rem;
+      color: #1e293b;
+      margin-bottom: 22px;
+    }
+
+    .article-body h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin: 36px 0 14px;
+      color: var(--text);
+    }
+
+    .quote-line {
+      margin: 28px 0;
+      padding: 18px 20px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .in-article-image-block {
+      margin: 34px 0;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .in-article-image {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+    }
+
+    .image-caption {
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0 30px;
+    }
+
+    .suggested-section h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.45rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .suggested-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .suggested-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    .suggested-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 170px;
+      object-fit: cover;
+    }
+
+    .suggested-content {
+      padding: 20px 20px 20px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .suggested-label {
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 10px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: var(--blue-dark);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .suggested-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .suggested-text {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 12px;
+    }
+
+    .read-more {
+      color: var(--blue);
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        gap: 18px;
+      }
+
+      .nav-links a.active::after,
+      .nav-links a:hover::after {
+        display: none;
+      }
+
+      .article-inner {
+        padding: 24px;
+      }
+
+      .article-hero {
+        height: 300px;
+      }
+
+      .in-article-image {
+        height: 260px;
+      }
+
+      .suggested-card {
+        grid-template-columns: 1fr;
+      }
+
+      .suggested-content {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(var(--container), calc(100% - 24px));
+      }
+
+      .page-shell {
+        padding-top: 22px;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .article-title {
+        font-size: 2rem;
+      }
+
+      .article-body p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html" class="logo"><span>Brandon</span> McClary</a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="panthers.html">Panthers</a>
+        <a href="hornets.html" class="active">Hornets</a>
+        <a href="about-me.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+     
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="container">
+      <div class="article-wrap">
+
+        <a href="hornets.html" class="back-link">← Back to Hornets</a>
+
+        <article class="article-card">
+
+          <img
+            src="https://cdn.abcotvs.com/dip/images/18515008_knueppel-flagg-ap-img.jpg"
+            alt="Kon Knueppel during his rookie season"
+            class="article-hero"
+          >
+
+          <div class="article-inner">
+
+            <div class="article-tag">CHARLOTTE HORNETS</div>
+
+            <h1 class="article-title">Why Kon Knueppel Should Be Rookie of the Year</h1>
+
+            <p class="article-subtitle">
+              The Rookie of the Year race is supposed to be about who had the best season, not just who came in with the loudest hype. That is where Kon Knueppel has a serious case.
+            </p>
+
+            <div class="article-meta">
+              <span>By Brandon McClary</span>
+              <span>April 1, 2026</span>
+              <span>NBA</span>
+            </div>
+
+            <div class="article-body">
+
+              <p>Every NBA season, there is always a conversation around who deserves Rookie of the Year, and more often than not it comes down to numbers, hype, and opportunity. But sometimes, the player who truly deserves it is not just the one putting up the flashiest stats. It is the one who consistently impacts winning. That is where Kon Knueppel starts to separate himself.</p>
+
+              <p>Knueppel is averaging around 19.2 points, 5.3 rebounds, and 3.4 assists per game, while shooting close to 49 percent from the field and over 43 percent from three. That kind of efficiency is rare for any player, especially a rookie, and it is a big reason why he has been one of the most impactful players in this class all season.</p>
+
+              <div class="quote-line">
+                Efficient scoring, nightly consistency, and real winning impact have made Knueppel one of the strongest Rookie of the Year cases in the league.
+              </div>
+
+              <p>If there is one player standing in his way, though, it is his former college teammate Cooper Flagg.</p>
+
+              <p>Flagg has had an incredible rookie season in his own right, putting up strong all-around numbers and showing the kind of two-way impact that made him such a highly talked about prospect coming into the league. He has been able to score, defend at a high level, and take on a bigger role within his team, which is exactly why so many people still have him in the Rookie of the Year conversation.</p>
+
+              <p>And to be fair, it is close.</p>
+
+              <h2>Why Knueppel has the edge</h2>
+
+              <p>Flagg brings more defensive upside and versatility, and at times has looked like the more complete player on both ends of the floor. There are nights where his impact defensively alone can swing a game, and that is something Knueppel does not necessarily match at the same level.</p>
+
+              <p>But when you really break it down, there is a difference.</p>
+
+              <p>Knueppel has been more efficient, more consistent, and in a lot of ways more reliable night to night. He does not disappear for stretches, he does not rely on high-volume nights to boost his numbers, and he plays within the flow of the game in a way that makes things easier for everyone around him.</p>
+
+              <div class="in-article-image-block">
+                <img
+                  src="https://wp.clutchpoints.com/wp-content/uploads/2025/03/Cooper-Flagg-and-Kon-Knueppel.jpg?w=1200"
+                  alt="NBA rookie action image"
+                  class="in-article-image"
+                >
+                <div class="image-caption">
+Cooper Flagg (left) with Kon Knueppel (right) during their time at Duke.                </div>
+              </div>
+
+              <p>While Flagg might have the higher ceiling long term, Knueppel has been the steadier player throughout the full season. And for an award like Rookie of the Year, that matters.</p>
+
+              <p>Rookie of the Year should not just go to the player with the most hype or the highest long-term potential. It should go to the player who had the best season. The one who showed up every night, produced efficiently, and helped their team win games in a consistent way.</p>
+
+              <p>That is what separates this race.</p>
+
+              <p><strong>And right now, there is a real argument that Kon Knueppel has been exactly that.</strong></p>
+
+            </div>
+
+            <hr class="article-divider">
+
+            <section class="suggested-section">
+              <h3>Suggested Article</h3>
+
+              <a href="kenyon-sadiq.html" class="suggested-card">
+                <img
+                  src="https://www.oregonlive.com/resizer/v2/ZQGPS5ZUCZEB7P45WQYWHGBG2M.jpg?auth=0239dabb48795adc1709073da312496b509cf57eee58c92cb82697a014c43496&width=1280&smart=true&quality=90"
+                  alt="Kenyon Sadiq article preview"
+                >
+                <div class="suggested-content">
+                  <div class="suggested-label">Suggested Read</div>
+                  <div class="suggested-title">The Peoples Dream: Kenyon Sadiq</div>
+                  <div class="suggested-text">
+                    A breakdown of Carolina’s draft decision heading into April and why Kenyon Sadiq has become such an interesting option.
+                  </div>
+                  <div class="read-more">Read Article →</div>
+                </div>
+              </a>
+            </section>
+
+          </div>
+        </article>
+
+        <div class="footer">
+          © 2026 Brandon McClary
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
